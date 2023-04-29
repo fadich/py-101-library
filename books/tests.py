@@ -1,40 +1,45 @@
 from django.test import TestCase
-
-from .models import Country
-
-
-def numbers_sum(a, b):
-    return a + b
+from .models import Genre, Publisher, Country
 
 
-class TestExample(TestCase):
+class GenreTest(TestCase):
 
-    def test_numbers_sum__one_plus_two__three_returned(self):
-        sum_ = numbers_sum(1, 2)
-        self.assertEqual(sum_, 3)
-
-    def test_numbers_sum__two_plus_two__is_not_five(self):
-        sum_ = numbers_sum(2, 2)
-        self.assertNotEqual(sum_, 5)
-
-    def test_books_url(self):
-        response = self.client.get("/books/")
-        self.assertEqual(response.status_code, 200)
-
-    def test_country_creation(self):
-        self.assertEqual(Country.objects.count(), 0)
-
-        country = Country()
-        country.name = "UA"
-        country.save()
-
-        self.assertEqual(Country.objects.count(), 1)
-
-    def test_country_creation_two(self):
-        self.assertEqual(Country.objects.count(), 0)
-
-        Country.objects.create(
-            name="UK",
+    def test_name(self):
+        p = Genre.objects.create(
+            name='Novel',
+            description='Some test description'
         )
 
-        self.assertEqual(Country.objects.count(), 1)
+        self.assertEqual(p.name, 'Novel')
+
+    def test_description(self):
+        p = Genre.objects.create(
+            name='Novel',
+            description='Some test description'
+        )
+
+        self.assertNotEqual(p.description, ' ')
+
+
+class PublisherTest(TestCase):
+
+    def setUp(self) -> None:
+        self.country = Country.objects.create(
+            name='Ukraine'
+        )
+
+    def test_country(self):
+        p = Publisher.objects.create(
+            name='АБАБАГАЛАМАГА',
+            country=self.country
+        )
+
+        self.assertEqual(p.country.name, 'Ukraine')
+
+    def test_name(self):
+        p = Publisher.objects.create(
+            name='АБАБАГАЛАМАГА',
+            country=self.country
+        )
+
+        self.assertEqual(p.name, 'АБАБАГАЛАМАГА')
