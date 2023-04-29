@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ object.name }}</title>
+</head>
+<body>
+<p> Name: {{ object.name }}</p>
+<p> ISBN: {{ object.ISBN }}</p>
+<p> Authors: {% for author in authors %} {{ author }} {%  endfor %}</p>
+
+</body>
+</html>
