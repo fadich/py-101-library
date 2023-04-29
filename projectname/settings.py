@@ -85,18 +85,7 @@ DATABASES = {
         'USER': 'postgres',
         'PASSWORD': 'RootBeet-101'
     },
-    'test': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'library_test',
-        'HOST': '3.71.99.74',
-        'PORT': 5433,
-        'USER': 'postgres',
-        'PASSWORD': 'RootBeet-101'
-    },
 }
-
-if "test" in sys.argv:
-    DATABASES["default"] = DATABASES["test"]
 
 
 # Password validation
