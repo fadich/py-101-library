@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import sys
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -82,8 +84,19 @@ DATABASES = {
         'PORT': 5433,
         'USER': 'postgres',
         'PASSWORD': 'RootBeet-101'
-    }
+    },
+    'test': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'library_test',
+        'HOST': '3.71.99.74',
+        'PORT': 5433,
+        'USER': 'postgres',
+        'PASSWORD': 'RootBeet-101'
+    },
 }
+
+if "test" in sys.argv:
+    DATABASES["default"] = DATABASES["test"]
 
 
 # Password validation
