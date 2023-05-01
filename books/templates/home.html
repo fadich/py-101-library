@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<ul>
+<ul class="list-group">
     {% for book in books %}
-        <li><a href="/books/{{ book.id }}" > {{ book }} </a></li>
+        <li class="list-group-item list-group-item-secondary"><a href="/books/{{ book.id }}" > {{ book }} </a></li>
     {% endfor %}
     </ul>
 {% endblock %}
