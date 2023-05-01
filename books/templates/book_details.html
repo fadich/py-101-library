@@ -1,7 +1,27 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<p> Name: {{ object.name }}</p>
-<p> ISBN: {{ object.ISBN }}</p>
-<p> Authors: {% for author in authors %} {{ author }} {%  endfor %}</p>
+    <table border="1">
+        <tr>
+            <th colspan="2">Book</th>
+
+        </tr>
+        <tr>
+            <td>Name :</td>
+            <td>{{ object.name }}</td>
+        </tr>
+        <tr>
+            <td>ISNB :</td>
+            <td>{{ object.ISBN }}</td>
+        </tr>
+        <tr>
+        <td>Authors :</td>
+            <td>
+                {% for author in authors %}
+                    {{ author.name }}
+                    {% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </td>
+        </tr>
+    </table>
 {% endblock %}
