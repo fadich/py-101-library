@@ -1,4 +1,4 @@
 .idea
-
+static
 *.pyc
 __pycache__

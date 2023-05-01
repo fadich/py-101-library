@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import os.path
 import sys
 
 from pathlib import Path
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'books'
+
 ]
 
 MIDDLEWARE = [
@@ -124,7 +125,13 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static2')
+]
