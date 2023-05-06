@@ -3,6 +3,7 @@ from .models import Book
 from django.views.generic import TemplateView, DetailView
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
+from django.contrib.auth.forms import UserCreationForm
 
 
 def user_login(request):
@@ -19,6 +20,24 @@ def user_login(request):
             })
     else:
         return render(request, 'user_login.html')
+
+
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect('/books/')
+
+
+def user_registration(request):
+    form = UserCreationForm()
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            login(request, form.instance)
+            return HttpResponseRedirect('/books/')
+    return render(request, 'registration.html', context={
+        "form": form
+    })
 
 
 def home(request):
